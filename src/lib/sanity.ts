@@ -41,7 +41,6 @@ export async function getPosts(page: number = 1, limit: number = 10) {
     // Apply pagination by slicing the results
     const paginatedPosts = allPosts.slice(offset, offset + limit);
 
-    console.log(`Fetched posts for page ${page}:`, paginatedPosts); // Debug log
 
     return paginatedPosts;
   } catch (error) {
@@ -67,7 +66,6 @@ export async function getFeaturedPosts() {
 
     const posts = await client.fetch(query);
 
-    console.log("Fetched featured posts:", posts); // Debug log
 
     return posts;
   } catch (error) {
@@ -93,7 +91,6 @@ export async function getPinnedPosts() {
 
     const posts = await client.fetch(query);
 
-    console.log("Fetched pinned posts:", posts); // Debug log
 
     return posts;
   } catch (error) {
@@ -109,7 +106,6 @@ export async function getTotalPostsCount() {
 
     const count = await client.fetch(query);
 
-    console.log("Total posts count:", count); // Debug log
 
     return count;
   } catch (error) {
@@ -135,7 +131,6 @@ export async function getAllPosts() {
 
     const posts = await client.fetch(query);
 
-    console.log("Fetched all posts:", posts); // Debug log
 
     return posts;
   } catch (error) {
@@ -147,7 +142,6 @@ export async function getAllPosts() {
 // Fetch a single post by slug
 export async function getPostBySlug(slug: string) {
   try {
-    console.log("Attempting to fetch post with slug:", slug); // Debug log
 
     const post = await client.fetch(
       `*[_type == "post" && slug.current == $slug][0] {
@@ -164,7 +158,6 @@ export async function getPostBySlug(slug: string) {
       { slug }
     );
 
-    console.log("Fetched post result:", post); // Debug log
 
     return post;
   } catch (error) {

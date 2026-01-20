@@ -16,6 +16,7 @@ interface PostCardProps {
   bannerImage?: {
     asset: {
       _ref: string;
+      _type: string;
     };
   };
 }

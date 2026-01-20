@@ -55,16 +55,8 @@ export default async function PostPage(props: {
   const params = await props.params;
   const { slug } = params;
 
-  // Log the resolved params to see what we're receiving
-  console.log("PostPage - Resolved params:", params);
-  console.log("PostPage - Resolved slug:", slug);
-  console.log("PostPage - Typeof resolved params:", typeof params);
-  console.log("PostPage - Typeof slug:", typeof slug);
-
   // Ensure we have a slug
   if (!slug) {
-    console.log("PostPage - No slug provided");
-
     const allPosts = await getAllPosts();
 
     return (
@@ -93,15 +85,10 @@ export default async function PostPage(props: {
     );
   }
 
-  // Log the slug we're using to fetch
-  console.log("PostPage - Attempting to fetch post with slug:", slug);
-
   // Fetch the post
   const post = await getPostBySlug(slug);
 
   if (!post) {
-    console.log("PostPage - Post not found for slug:", slug);
-
     const allPosts = await getAllPosts();
 
     return (
@@ -129,8 +116,6 @@ export default async function PostPage(props: {
       </div>
     );
   }
-
-  console.log("PostPage - Successfully fetched post:", post.title);
 
   // Function to share to WhatsApp
   const shareToWhatsApp = () => {

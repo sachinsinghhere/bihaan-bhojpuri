@@ -3,11 +3,8 @@ import { notFound } from 'next/navigation';
 export default function TestSlugRoute({ params }: { params: { slug: string } }) {
   // If no slug is provided, return 404
   if (!params.slug) {
-    console.log('No slug provided in params');
     return notFound();
   }
-
-  console.log('TestSlugRoute - Received slug:', params.slug);
   
   return (
     <div className="container mx-auto py-12 px-4">

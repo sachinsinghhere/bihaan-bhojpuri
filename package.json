@@ -6,22 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "import-wordpress": "tsx scripts/import-wordpress-to-sanity.ts",
-    "update-wordpress-content": "tsx scripts/update-wordpress-content.ts",
-    "clean-post-bodies": "tsx scripts/clean-post-bodies.ts",
-    "delete-unwanted-posts": "tsx scripts/delete-unwanted-posts.ts",
-    "final-clean-up": "tsx scripts/final-clean-up.ts",
-    "enhanced-clean-up": "tsx scripts/enhanced-clean-up.ts",
-    "comprehensive-clean-up": "tsx scripts/comprehensive-clean-up.ts",
-    "remove-specified-symbols": "tsx scripts/remove-specified-symbols.ts",
-    "remove-greater-than-symbol": "tsx scripts/remove-greater-than-symbol.ts",
-    "add-missing-posts": "tsx scripts/add-missing-posts.ts",
-    "count-posts": "tsx scripts/count-posts.ts",
-    "update-posts-schema": "tsx scripts/update-posts-schema.ts",
-    "verify-posts": "tsx scripts/verify-posts.ts",
-    "test-pagination": "tsx scripts/test-pagination.ts",
-    "test-connection": "tsx scripts/test-connection.ts"
+    "lint": "eslint"
   },
   "dependencies": {
     "@blocknote/core": "^0.46.1",

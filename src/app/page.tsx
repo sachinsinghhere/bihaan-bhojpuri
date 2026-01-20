@@ -23,7 +23,6 @@ export default async function Home() {
   // Fetch all posts
   const posts = await getAllPosts();
 
-  console.log(`Fetched all posts:`, posts.length, 'posts'); // Debug log
 
   return (
     <div className="container mx-auto py-8 px-4">
@@ -36,8 +35,6 @@ export default async function Home() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post: any) => {
-          // Log the slug to see if it's properly formed
-          console.log(`Post ID: ${post._id}, Title: ${post.title}, Slug: ${post.slug?.current}`);
 
           return (
             <PostCard
