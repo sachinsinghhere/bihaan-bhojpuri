@@ -126,59 +126,92 @@ export default async function PostPage(props: {
   };
 
   return (
-    <article className="container mx-auto py-12 px-4 max-w-2xl">
-      {post.bannerImage?.asset?._ref && (
-        <div className="relative h-64 w-full mb-8 rounded-lg overflow-hidden">
-          <Image
-            src={urlForImage(post.bannerImage).url()}
-            alt={post.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        </div>
-      )}
+    <div className="min-h-screen">
+      <header className="py-4 px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center max-w-4xl mx-auto">
+          <div className="flex items-center space-x-2">
+            <div>
+              <img
+                src="/assets/logos/logo.svg"
+                alt="Bihaan Bhojpuri Logo"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
+              />
+            </div>
+            <h1 className="text-xl font-bold font-tiro-devanagari-hindi">Bihaan Bhojpuri</h1>
+          </div>
 
-      <div className="mb-8">
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-medium ${
-              post.category === "Poems"
-                ? "bg-[#8c6a5d] text-white"
-                : "bg-[#5f6f52] text-white"
-            }`}
-          >
-            {post.category}
-          </span>
-          <div className="flex items-center">
-            <CalendarIcon className="h-4 w-4 mr-1" />
-            <time dateTime={post.publishedAt}>
-              {format(new Date(post.publishedAt), "MMMM d, yyyy")}
-            </time>
+          {/* Theme toggle on the right */}
+          <div>
+            <ThemeToggleServerWrapper />
           </div>
         </div>
+      </header>
 
-        <h1 className="text-4xl font-tiro-devanagari-hindi font-bold mb-6">
-          {post.title}
-        </h1>
-      </div>
+      <article className="container mx-auto py-6 px-4 max-w-2xl">
+        {post.bannerImage?.asset?._ref && (
+          <div className="relative h-64 w-full mb-8 rounded-lg overflow-hidden">
+            <Image
+              src={urlForImage(post.bannerImage).url()}
+              alt={post.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        )}
 
-      <div className="prose prose-lg max-w-none font-noto-serif-devanagari">
-        <PortableText value={post.body} components={portableTextComponents} />
-      </div>
+        <div className="mb-8">
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
+            <span
+              className={`px-3 py-1 rounded-full text-xs font-medium ${
+                post.category === "Poems"
+                  ? "bg-[#8c6a5d] text-white"
+                  : "bg-[#5f6f52] text-white"
+              }`}
+            >
+              {post.category}
+            </span>
+            <div className="flex items-center">
+              <CalendarIcon className="h-4 w-4 mr-1" />
+              <time dateTime={post.publishedAt}>
+                {format(new Date(post.publishedAt), "MMMM d, yyyy")}
+              </time>
+            </div>
+          </div>
 
-      <div className="mt-12 pt-6 border-t border-divider flex justify-end">
-        {/* Share button with direct link to WhatsApp */}
-        <a
-          href={`https://wa.me/?text=${encodeURIComponent(`Check out this Bhojpuri literature: ${post.title} - ${typeof window !== "undefined" ? window.location.href : ""}`)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
-        >
-          <ShareIcon className="h-4 w-4" />
-          Share to WhatsApp
-        </a>
-      </div>
-    </article>
+          <h1 className="text-3xl sm:text-4xl font-tiro-devanagari-hindi font-bold mb-6">
+            {post.title}
+          </h1>
+        </div>
+
+        <div className="prose prose-lg max-w-none font-noto-serif-devanagari">
+          <PortableText value={post.body} components={portableTextComponents} />
+        </div>
+
+
+        <div className="mt-6 flex justify-end">
+          {/* Share button with direct link to WhatsApp */}
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(`Check out this Bhojpuri literature: ${post.title} - ${typeof window !== "undefined" ? window.location.href : ""}`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-opacity"
+          >
+            <ShareIcon className="h-4 w-4" />
+            Share to WhatsApp
+          </a>
+        </div>
+      </article>
+    </div>
   );
+}
+
+// Wrapper component to handle client-side theme toggle
+async function ThemeToggleServerWrapper() {
+  const ThemeToggleModule = await import('@/components/ThemeToggle');
+  const ThemeToggle = ThemeToggleModule.ThemeToggle;
+
+  return <ThemeToggle />;
 }

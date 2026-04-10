@@ -165,3 +165,84 @@ export async function getPostBySlug(slug: string) {
     return null; // Return null if there's an error
   }
 }
+
+// Search posts by title and slug
+export async function searchPosts(searchTerm: string) {
+  try {
+    const query = `*[_type == "post" && (title match $searchTerm + "*" || slug.current match $searchTerm + "*")] {
+      _id,
+      title,
+      slug,
+      featured,
+      pinned,
+      likes,
+      bannerImage,
+      publishedAt
+    }`;
+
+    const posts = await client.fetch(query, { searchTerm });
+
+    return posts;
+  } catch (error) {
+    console.error(`Error searching posts with term "${searchTerm}":`, error);
+    return []; // Return empty array if there's an error
+  }
+}
+
+// Increment likes for a post
+export async function incrementLike(postId: string) {
+  try {
+    // For this implementation, we'll need to use the Sanity API to update the document
+    // Since we can't directly update from client-side without a token, we'll return the new count
+    // In a real application, you'd need a serverless function or API endpoint to handle this securely
+
+    // First, fetch the current post to get the current like count
+    const query = `*[_type == "post" && _id == $postId][0]{
+      _id,
+      likes
+    }`;
+
+    const post = await client.fetch(query, { postId });
+
+    if (!post) {
+      throw new Error('Post not found');
+    }
+
+    const currentLikes = post.likes || 0;
+    const updatedLikes = currentLikes + 1;
+
+    // In a real application, you would update the document like this:
+    // const transaction = client.transaction();
+    // transaction.patch(postId, {
+    //   inc: {
+    //     likes: 1
+    //   }
+    // });
+    // await transaction.commit();
+
+    // For now, we'll just return the calculated new like count
+    return updatedLikes;
+  } catch (error) {
+    console.error(`Error incrementing likes for post ${postId}:`, error);
+    return null;
+  }
+}
+
+// Update likes for a post (to be called from an API route)
+export async function updatePostLikes(postId: string, newLikes: number) {
+  try {
+    // In a real application, this would be called from a server-side API route
+    // to securely update the post's like count
+    const result = await client
+      .patch(postId)
+      .inc({
+        likes: 1
+      })
+      .commit();
+
+    return result;
+  } catch (error) {
+    console.error(`Error updating likes for post ${postId}:`, error);
+    return null;
+  }
+}

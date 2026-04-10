@@ -134,6 +134,134 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Lantern Theme (Dark) */
+.lantern {
+  --background: #0f0f15; /* Deep navy blue background */
+  --foreground: #e0e0e6; /* Light gray text */
+  --primary: #f59e0b; /* Warm amber yellow */
+  --primary-foreground: #0f0f15;
+  --secondary: #1a1a2e; /* Dark blue */
+  --secondary-foreground: #e0e0e6;
+  --accent: #8b5cf6; /* Purple accent */
+  --accent-foreground: #ffffff;
+  --card: #1a1a2e;
+  --card-foreground: #e0e0e6;
+  --popover: #1a1a2e;
+  --popover-foreground: #e0e0e6;
+  --muted: #2d2d44; /* Darker purple */
+  --muted-foreground: #9ca3af; /* Medium gray */
+  --border: #2d2d44;
+  --input: #2d2d44;
+  --ring: #f59e0b;
+  --chart-1: #f59e0b;
+  --chart-2: #8b5cf6;
+  --chart-3: #ec4899;
+  --chart-4: #3b82f6;
+  --chart-5: #10b981;
+}
+
+/* Bihan Theme (Morning) */
+.bihan {
+  --background: linear-gradient(135deg, #fef7e0 0%, #ffeaa7 100%); /* Warm sunrise gradient */
+  --foreground: #5d4037; /* Rich brown text */
+  --primary: #ff9800; /* Orange-yellow */
+  --primary-foreground: #ffffff;
+  --secondary: #ffd54f; /* Light yellow */
+  --secondary-foreground: #5d4037;
+  --accent: #ff6f00; /* Deeper orange */
+  --accent-foreground: #ffffff;
+  --card: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
+  --card-foreground: #5d4037;
+  --popover: rgba(255, 255, 255, 0.95);
+  --popover-foreground: #5d4037;
+  --muted: rgba(255, 229, 100, 0.3); /* Light yellow tint */
+  --muted-foreground: #a1887f; /* Light brown */
+  --border: rgba(255, 193, 7, 0.3); /* Subtle orange */
+  --input: rgba(255, 193, 7, 0.3);
+  --ring: #ff9800;
+  --chart-1: #ff9800;
+  --chart-2: #ffd54f;
+  --chart-3: #ff6f00;
+  --chart-4: #ffb300;
+  --chart-5: #f57c00;
+}
+
+/* Kodo Theme (Millet) */
+.kodo {
+  --background: #f5f5dc; /* Beige background like millet grain */
+  --foreground: #4a4a4a; /* Charcoal gray text */
+  --primary: #8b7355; /* Warm brown like millet */
+  --primary-foreground: #ffffff;
+  --secondary: #d2b48c; /* Tan color */
+  --secondary-foreground: #4a4a4a;
+  --accent: #a0522d; /* Sienna brown */
+  --accent-foreground: #ffffff;
+  --card: #fdfdfd; /* Very light beige */
+  --card-foreground: #4a4a4a;
+  --popover: #ffffff;
+  --popover-foreground: #4a4a4a;
+  --muted: #e8e3d0; /* Soft beige */
+  --muted-foreground: #7d7d7d; /* Medium gray */
+  --border: #d2b48c; /* Soft tan */
+  --input: #d2b48c;
+  --ring: #8b7355;
+  --chart-1: #8b7355;
+  --chart-2: #a0522d;
+  --chart-3: #d2b48c;
+  --chart-4: #bfae8f;
+  --chart-5: #c19a6b;
+}
+
+/* Background animations for themes */
+.light {
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+  transition: background 0.5s ease;
+}
+
+.dark {
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 20%);
+  transition: background 0.5s ease;
+}
+
+.lantern {
+  background-image: radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 20%);
+  transition: background 0.5s ease;
+}
+
+.bihan {
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 152, 0, 0.1) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 111, 0, 0.1) 0%, transparent 20%);
+  transition: background 0.5s ease;
+}
+
+.kodo {
+  background-image: radial-gradient(circle at 10% 20%, rgba(139, 115, 85, 0.1) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(160, 82, 45, 0.1) 0%, transparent 20%);
+  transition: background 0.5s ease;
+}
+
+@keyframes likePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-likePulse {
+  animation: likePulse 0.6s ease-out;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
